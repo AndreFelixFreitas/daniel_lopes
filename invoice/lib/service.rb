@@ -10,7 +10,6 @@ class Service
   end
 
   def amount
-    quantity * unit_price
+    (quantity * unit_price)
   end
-
 end
