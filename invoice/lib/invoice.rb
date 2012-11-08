@@ -15,7 +15,7 @@ class Invoice
   def_delegator :owner, :address, :owner_address
 
   def initialize(options = {})
-    @id         = options[:id]
+    @id         = options[:id] || "1"
     @due_date   = options[:due_date]
     @issue_date = options[:issue_date]
   end
