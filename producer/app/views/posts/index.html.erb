@@ -1,27 +1,24 @@
-<h1>Listing posts</h1>
+<%= if @posts.present? %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Excerpt</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <% @posts.each do |post| %>
+    <h2><%= link_to post.title.titleize, posts %></h2>
 
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.excerpt %></td>
-    <td><%= post.body %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <div id="post">
+      <%= post.excerpt %>
+      <p><%= link_to 'continue ...', post %></p>
+    </div>
 
-<br />
+    <p>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post, :confirm => 'Are you sure?',
+        :method => :delete %>
+    </p>
 
-<%= link_to 'New Post', new_post_path %>
+    <hr />
+  <% end %>
+
+<%= else %>
+  <p>We'll start posting soon.</p>
+<%= end %>
+
+<p><%= link_to 'New Post', new_post_path %></p>

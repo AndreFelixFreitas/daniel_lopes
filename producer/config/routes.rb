@@ -1,10 +1,13 @@
 Producer::Application.routes.draw do
+
   get "pages/index"
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
   # The priority is based upon order of creation:
-  # first created -> highest priority.
+  # first created -> dohighest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
