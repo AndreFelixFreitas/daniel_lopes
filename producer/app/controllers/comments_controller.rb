@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @post = Post.find(params[:post_id])
-    @comment = Post.comments.build(params[:comment])
+    @comment = @post.comments.build(params[:comment])
     flash[:alert] = 'Fail to receive the comment. Double check de fields.' unless
-      @comment.save
+      @comment.save!
 
     redirect_to @post
   end

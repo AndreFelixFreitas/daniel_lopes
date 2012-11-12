@@ -1,4 +1,5 @@
  class PostsController < ApplicationController
+  before_filter :load_resources, only: %w(new create edit update)
   # GET /posts
   # GET /posts.json
   def index
@@ -42,5 +43,12 @@
     @posts = Post.find(params[:id])
     @posts.destroy
     respond_with @posts
+  end
+
+  private
+
+  def load_resources
+    @authors = User.all
+    @categories = Category.all
   end
 end
